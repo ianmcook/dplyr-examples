@@ -16,6 +16,6 @@ SELECT origin,
     COUNT(*) AS num_departures,
     AVG(dep_delay) AS avg_dep_delay
   FROM flights
-  WHERE dest = 'SJC'
-  GROUP BY origin
+  WHERE dest IN ('SJC', 'SFO')
+  GROUP BY origin, dest
   ORDER BY avg_dep_delay;

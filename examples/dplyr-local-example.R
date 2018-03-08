@@ -26,8 +26,8 @@ flights <- read_csv("data/flights.csv")
 library(dplyr)
 
 flights %>%
-  filter(dest == "SJC") %>%
-  group_by(origin) %>%
+  filter(dest %in% c("SJC", "SFO")) %>%
+  group_by(origin, dest) %>%
   summarise(
     num_departures = n(),
     avg_dep_delay = mean(dep_delay, na.rm = TRUE)

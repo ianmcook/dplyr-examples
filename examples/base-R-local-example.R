@@ -14,9 +14,9 @@
 
 flights <- read.csv("data/flights.csv")
 
-flights_to_las <- flights[flights$dest == "SJC", ]
-flights_to_las_agg <- cbind(
-	setNames(aggregate(dest ~ origin, data = flights_to_las, FUN = length), c("origin", "num_departures")),
-	avg_dep_delay = aggregate(dep_delay ~ origin, data = flights_to_las, FUN = mean, na.rm = TRUE)$dep_delay
+flights_to_sjc_sfo <- flights[flights$dest %in% c("SJC", "SFO"), ]
+flights_to_sjc_sfo_agg <- cbind(
+	setNames(aggregate(flight ~ origin + dest, data = flights_to_sjc_sfo, FUN = length), c("origin", "dest", "num_departures")),
+	avg_dep_delay = aggregate(dep_delay ~ origin + dest, data = flights_to_sjc_sfo, FUN = mean, na.rm = TRUE)$dep_delay
 )
-flights_to_las_agg[order(flights_to_las_agg$avg_dep_delay), ]
+flights_to_sjc_sfo_agg[order(flights_to_sjc_sfo_agg$avg_dep_delay), ]
