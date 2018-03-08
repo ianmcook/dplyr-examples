@@ -12,29 +12,32 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+# install package
 if(!"sparklyr" %in% rownames(installed.packages())) {
   install.packages("sparklyr")
 }
 
+# load packages
 library(sparklyr)
 library(dplyr) # don't forget to load dplyr
 
+# start a Spark session
 spark <- spark_connect(master = "yarn")
 
-# load by specifying path to file in HDFS
-flights <- spark_read_parquet(
+# read data by specifying path to file in HDFS
+flights_spark <- spark_read_parquet(
   sc = spark,
   name = "flights",
   path = "/user/hive/warehouse/flights/"
 )
 
-# or load by specifying name of table in metastore
-flights <- tbl(spark, "flights")
+# or read data by specifying name of table in metastore
+flights_spark <- tbl(spark, "flights")
 # see object classes
 class(flights_spark)
 
 # query using dplyr
-flights %>%
+flights_spark %>%
   filter(dest %in% c("SJC", "SFO")) %>%
   group_by(origin, dest) %>%
   summarise(

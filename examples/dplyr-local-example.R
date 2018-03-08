@@ -22,12 +22,14 @@ if(!"dplyr" %in% rownames(installed.packages())) {
 library(readr)
 library(dplyr)
 
-flights <- read_csv("data/flights.csv")
+# read data
+flights_local <- read_csv("data/flights.csv")
 
 # see object classes
-class(flights)
+class(flights_local)
 
-flights %>%
+# manipulate using dplyr
+flights_local %>%
   filter(dest %in% c("SJC", "SFO")) %>%
   group_by(origin, dest) %>%
   summarise(

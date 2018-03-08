@@ -27,13 +27,14 @@ library(implyr)
 drv <- odbc::odbc()
 impala <- src_impala(drv = drv, dsn = "Impala DSN")
 
-flights <- tbl(impala, "flights")
+# read data
+flights_impala <- tbl(impala, "flights")
 
 # see object classes
 class(flights_impala)
 
 # query using dplyr
-flights %>%
+flights_impala %>%
   filter(dest %in% c("SJC", "SFO")) %>%
   group_by(origin, dest) %>%
   summarise(
