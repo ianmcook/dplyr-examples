@@ -25,7 +25,7 @@ flights_impala <- tbl(impala, "flights")
 flights_impala %>% filter(month == "3")
 
 # the right way:
-flights %>% select(month) # notice month is an integer column
+flights_impala %>% select(month) # notice month is an integer column
 flights_impala %>% filter(month == 3L)
 
 # another right way:
