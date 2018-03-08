@@ -25,10 +25,7 @@ if(!"odbc" %in% rownames(installed.packages())) {
 library(implyr)
 
 drv <- odbc::odbc()
-impala <- src_impala(
-    drv = drv,
-    dsn = "Impala DSN"
-  )
+impala <- src_impala(drv = drv, dsn = "Impala DSN")
 
 flights <- tbl(impala, "flights")
 
