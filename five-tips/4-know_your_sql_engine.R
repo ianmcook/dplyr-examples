@@ -32,7 +32,7 @@ flights_impala %>%
   summarise(appx_num_dest = n_distinct(dest)) %>%
   arrange(desc(appx_num_dest))
 
-# more efficient:
+# more efficient (but approximate):
 flights_impala %>% 
   group_by(origin) %>% 
   summarise(appx_num_dest = NDV(dest)) %>%
