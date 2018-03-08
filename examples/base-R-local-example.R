@@ -12,10 +12,13 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+# read data
 flights <- read.csv("data/flights.csv")
 
 # see object class
 class(flights)
+
+# maipulate using base R
 flights_to_sjc_sfo <- flights[flights$dest %in% c("SJC", "SFO"), ]
 flights_to_sjc_sfo_agg <- cbind(
 	setNames(aggregate(flight ~ origin + dest, data = flights_to_sjc_sfo, FUN = length), c("origin", "dest", "num_departures")),

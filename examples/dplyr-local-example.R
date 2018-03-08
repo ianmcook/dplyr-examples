@@ -12,6 +12,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+# install packages
 if(!"readr" %in% rownames(installed.packages())) {
   install.packages("readr")
 }
@@ -19,6 +20,7 @@ if(!"dplyr" %in% rownames(installed.packages())) {
   install.packages("dplyr")
 }
 
+# load packages
 library(readr)
 library(dplyr)
 

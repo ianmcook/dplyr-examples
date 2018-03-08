@@ -33,6 +33,7 @@ flights_spark <- spark_read_parquet(
 
 # or read data by specifying name of table in metastore
 flights_spark <- tbl(spark, "flights")
+
 # see object classes
 class(flights_spark)
 
@@ -46,4 +47,5 @@ flights_spark %>%
   ) %>%
   arrange(avg_dep_delay)
 
+# stop the Spark session
 spark_disconnect(spark)

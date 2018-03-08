@@ -15,6 +15,7 @@
 # This script requires that the Impala ODBC driver is installed on the host
 # Modify .odbc.ini and .odbcinst.ini before running
 
+# install packages
 if(!"implyr" %in% rownames(installed.packages())) {
   install.packages("implyr")
 }
@@ -22,8 +23,10 @@ if(!"odbc" %in% rownames(installed.packages())) {
   install.packages("odbc")
 }
 
+# load package
 library(implyr)
 
+# connect to Impala
 drv <- odbc::odbc()
 impala <- src_impala(drv = drv, dsn = "Impala DSN")
 
@@ -43,4 +46,5 @@ flights_impala %>%
   ) %>%
   arrange(avg_dep_delay)
 
+# disconnect from Impala
 dbDisconnect(impala)
