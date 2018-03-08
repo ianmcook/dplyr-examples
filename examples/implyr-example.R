@@ -29,6 +29,8 @@ impala <- src_impala(drv = drv, dsn = "Impala DSN")
 
 flights <- tbl(impala, "flights")
 
+# see object classes
+class(flights_impala)
 
 # query using dplyr
 flights %>%

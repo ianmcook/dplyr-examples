@@ -14,6 +14,8 @@
 
 flights <- read.csv("data/flights.csv")
 
+# see object class
+class(flights)
 flights_to_sjc_sfo <- flights[flights$dest %in% c("SJC", "SFO"), ]
 flights_to_sjc_sfo_agg <- cbind(
 	setNames(aggregate(flight ~ origin + dest, data = flights_to_sjc_sfo, FUN = length), c("origin", "dest", "num_departures")),

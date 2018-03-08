@@ -24,6 +24,8 @@ library(dplyr)
 
 flights <- read_csv("data/flights.csv")
 
+# see object classes
+class(flights)
 
 flights %>%
   filter(dest %in% c("SJC", "SFO")) %>%

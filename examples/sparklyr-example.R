@@ -30,6 +30,8 @@ flights <- spark_read_parquet(
 
 # or load by specifying name of table in metastore
 flights <- tbl(spark, "flights")
+# see object classes
+class(flights_spark)
 
 # query using dplyr
 flights %>%
