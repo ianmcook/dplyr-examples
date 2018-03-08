@@ -20,10 +20,10 @@ if(!"dplyr" %in% rownames(installed.packages())) {
 }
 
 library(readr)
+library(dplyr)
 
 flights <- read_csv("data/flights.csv")
 
-library(dplyr)
 
 flights %>%
   filter(dest %in% c("SJC", "SFO")) %>%

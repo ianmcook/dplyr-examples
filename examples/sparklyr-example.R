@@ -17,7 +17,7 @@ if(!"sparklyr" %in% rownames(installed.packages())) {
 }
 
 library(sparklyr)
-library(dplyr)
+library(dplyr) # don't forget to load dplyr
 
 spark <- spark_connect(master = "yarn")
 

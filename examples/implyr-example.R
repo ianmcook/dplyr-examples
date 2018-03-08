@@ -29,7 +29,6 @@ impala <- src_impala(drv = drv, dsn = "Impala DSN")
 
 flights <- tbl(impala, "flights")
 
-library(dplyr)
 
 # query using dplyr
 flights %>%
