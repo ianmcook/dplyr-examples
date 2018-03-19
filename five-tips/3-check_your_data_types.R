@@ -32,4 +32,17 @@ flights_impala %>% filter(month == 3L)
 flights_impala %>% filter(as.integer(month) == 3L)
 
 
+## implicit and explicit casting
+
+# the wrong way:
+flights_impala %>%
+  select(carrier, flight) %>%
+  mutate(flight_code = paste0(carrier, flight))
+
+# the right way:
+flights_impala %>%
+  select(carrier, flight) %>%
+  mutate(flight_code = paste0(carrier, as.character(flight)))
+
+
 dbDisconnect(impala)
