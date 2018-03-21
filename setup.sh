@@ -17,21 +17,6 @@
 # Replace hostname with an impalad hostname before running
 
 impala-shell -i hostname:21000 -q '
-  CREATE TABLE default.airlines (
-    `carrier` STRING,
-    `name` STRING)
-  ROW FORMAT DELIMITED FIELDS TERMINATED BY ","
-  LOCATION "hdfs:///user/hive/warehouse/airlines/";'
-
-airlines_empty=$(hdfs dfs -count /user/hive/warehouse/airlines/ | awk '{print $2}')
-if [[ $airlines_empty -eq 0 ]]; then
-  hdfs dfs -put data/airlines.csv /user/hive/warehouse/airlines/
-else
-  echo ERROR: /user/hive/warehouse/airlines/ is not empty
-  exit 1
-fi
-
-impala-shell -i hostname:21000 -q '
   CREATE TABLE flights (
   CREATE TABLE default.flights (
       year SMALLINT,
